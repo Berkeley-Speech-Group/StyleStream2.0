@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="StyleStream 2.0: Fast and Controllable Streaming Voice Style Conversion. Accepted at NeurIPS 2026. Explore voice style conversion, text-based voice design, and voice editing demos.">
+  <meta name="author" content="Yisi Liu, Nicholas Lee, Gopala K. Anumanchipalli">
+  <meta name="keywords" content="StyleStream 2.0, voice style design, voice editing, text-based speech generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StyleStream 2.0: Fast and Controllable Streaming Voice Style Conversion</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+<body>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">StyleStream 2.0: Fast and Controllable Streaming Voice Style Conversion</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Yisi Liu,</span>
+            <span class="author-block">Nicholas Lee,</span>
+            <span class="author-block">Gopala K. Anumanchipalli</span>
+          </div>
+          <div class="is-size-5 publication-affiliation">University of California, Berkeley</div>
+          <div class="is-size-5 publication-venue">Accepted at NeurIPS 2026</div>
+          <div class="publication-links">
+            <a class="button is-dark is-rounded" href="https://github.com/Berkeley-Speech-Group/StyleStream2.0" target="_blank" rel="noopener noreferrer">Code</a>
+            <button class="button is-rounded publication-link-placeholder" type="button" disabled>arXiv &mdash; Coming soon</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section figure-section">
+  <div class="container is-max-widescreen">
+    <figure class="system-figure">
+      <img src="./static/images/stylizer-voice-controller.png" alt="StyleStream 2.0 system overview">
+    </figure>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Voice style conversion (VSC) aims to transform a source utterance to match
+            the timbre, accent, and emotion of a target voice while preserving linguistic
+            content. StyleStream 1.0 introduced the first streamable zero-shot VSC system
+            with state-of-the-art conversion quality, but remained limited in two ways:
+            approximately 1s end-to-end latency on consumer hardware, and the lack of a
+            text-based interface for designing or editing target voices. We present
+            StyleStream 2.0, a fast and controllable streaming VSC framework that addresses
+            these limitations. To reduce latency, we train a few-step pixel MeanFlow model
+            and further fine-tune it with autoregressive feedback inspired by Self Forcing,
+            improving robustness under streaming inference. This reduces end-to-end latency
+            to 520 ms on a consumer GPU, a 2x speedup over StyleStream 1.0, while maintaining
+            conversion quality. To enable controllable style manipulation, we remove the
+            mel-spectrogram context and instead route target style information through a
+            compact style embedding. In this embedding space, we train a unified
+            text-conditioned flow matching model that supports both text-based voice design,
+            which maps natural language prompts to voice styles, and instruction-based voice
+            editing, which modifies a specific attribute of a source utterance while preserving
+            the rest. Experiments show that StyleStream 2.0 achieves the strongest target
+            style fidelity on VSC, voice design, and voice editing, while remaining competitive
+            on intelligibility and non-edited attribute preservation. Samples can be found
+            below in the <a href="#voice-style-conversion">voice style conversion</a>,
+            <a href="#voice-design">voice design</a>, and <a href="#voice-editing">voice editing</a> demos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="video-demo" class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video Demo</h2>
+        <div class="content">
+          <video class="demo-video" controls preload="metadata">
+            <source src="./static/video/StyleStream2.0_Video_Demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="voice-style-conversion" class="section">
+  <div style="width: 100%; max-width: none; padding: 0 20px;">
+    <h2 class="title is-3 has-text-centered">Voice Style Conversion</h2>
+    <p class="has-text-centered demo-section-note">
+      Source utterance plus a target style utterance. <span id="vsc-count">Loading</span>
+    </p>
+    <div id="vsc-grid" class="table-container" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="voice-design" class="section">
+  <div style="width: 100%; max-width: none; padding: 0 20px;">
+    <h2 class="title is-3 has-text-centered">Text-Based Voice Design</h2>
+    <p class="has-text-centered demo-section-note">
+      Source text plus a natural-language prompt. <span id="design-count">Loading</span>
+    </p>
+    <div id="design-grid" class="table-container" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="voice-editing" class="section">
+  <div style="width: 100%; max-width: none; padding: 0 20px;">
+    <h2 class="title is-3 has-text-centered">Text-Based Voice Editing</h2>
+    <p class="has-text-centered demo-section-note">
+      Source utterance plus a single-axis text edit instruction. <span id="edit-count">Loading</span>
+    </p>
+    <div id="edit-grid" class="table-container" aria-live="polite"></div>
+  </div>
+</section>
+
+<footer class="footer demo-footer">
+  <div class="content has-text-centered">
+    <p>StyleStream 2.0 demo samples.</p>
+  </div>
+</footer>
+
+  <script>
+    const SAMPLE_ROOT = "./static/samples";
+
+    const VSC_MODELS = [
+      ["cosyvoice2", "CosyVoice 2"],
+      ["cosyvoice3", "CosyVoice 3"],
+      ["final-vevo", "Vevo"],
+      ["final-vevo2", "Vevo 2"],
+      ["final-stylestream", "StyleStream 1.0 (Offline)"],
+      ["final-stylestream-streaming-s12", "StyleStream 1.0 (Streaming)"],
+      ["final-meanflow", "StyleStream 2.0 (Offline)"],
+      ["final-meanflow-streaming-cs4800-la1280", "StyleStream 2.0 (Streaming)"]
+    ];
+
+    const TASKS = {
+      design: {
+        titleField: "prompt",
+        titleLabel: "Prompt",
+        countId: "design-count",
+        gridId: "design-grid",
+        sourceLabel: "Source",
+        modelOrder: [
+          ["captts", "CapTTS"],
+          ["qwen3_voice_design", "Qwen3-TTS"],
+          ["stylestream2.0-st64-w4.0", "StyleStream 2.0 (Offline)"],
+          ["streaming-st64-w4.0", "StyleStream 2.0 (Streaming)"]
+        ]
+      },
+      edit: {
+        titleField: "instruction",
+        titleLabel: "Instruction",
+        countId: "edit-count",
+        gridId: "edit-grid",
+        sourceLabel: "Source",
+        modelOrder: [
+          ["vevo", "Vevo"],
+          ["vevo2", "Vevo 2"],
+          ["stylestream2.0-st64-w4.0", "StyleStream 2.0 (Offline)"],
+          ["streaming-st64-w4.0", "StyleStream 2.0 (Streaming)"]
+        ]
+      }
+    };
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function axesText(row) {
+      if (row.task === "design") {
+        return (row.target_axes || []).join(", ");
+      }
+      return row.edit_axis || "";
+    }
+
+    function audioTag(src) {
+      return `
+        <audio controls preload="none">
+          <source src="${escapeHtml(src)}" type="audio/wav">
+        </audio>
+      `;
+    }
+
+    function formatTarget(value) {
+      const text = String(value || "").replace(/_/g, " ");
+      if (text.toLowerCase() === "us") return "US";
+      return text.replace(/\b\w/g, (letter) => letter.toUpperCase());
+    }
+
+    function renderVscTable(rows) {
+      const modelHeaders = VSC_MODELS
+        .map(([, label]) => `<th>${escapeHtml(label)}</th>`)
+        .join("");
+      const body = rows.map((row) => {
+        const taskRoot = `${SAMPLE_ROOT}/vsc/${row.task}`;
+        const target = formatTarget(row.target);
+        const sourceAudio = `${taskRoot}/source/${row.source_id}.wav`;
+        const targetAudio = `${taskRoot}/target/${row.target}.wav`;
+        const modelAudio = VSC_MODELS
+          .map(([model]) => {
+            const src = `${taskRoot}/${model}/${model}_${row.source_id}_to_${row.target}.wav`;
+            return `<td>${audioTag(src)}</td>`;
+          })
+          .join("");
+        return `
+          <tr>
+            <td>${audioTag(sourceAudio)}</td>
+            <td>${escapeHtml(target)}</td>
+            <td>${audioTag(targetAudio)}</td>
+            ${modelAudio}
+          </tr>
+        `;
+      }).join("");
+      return `
+        <table class="demo-table">
+          <thead>
+            <tr>
+              <th>Source Audio</th>
+              <th>Target Style</th>
+              <th>Target Audio</th>
+              ${modelHeaders}
+            </tr>
+          </thead>
+          <tbody>${body}</tbody>
+        </table>
+      `;
+    }
+
+    function renderTable(task, rows) {
+      const config = TASKS[task];
+      const taskRoot = `${SAMPLE_ROOT}/${task}`;
+      const modelHeaders = config.modelOrder
+        .map(([, label]) => `<th>${escapeHtml(label)}</th>`)
+        .join("");
+      const body = rows.map((row) => {
+        const evalId = row.eval_id;
+        const sourceAudio = `${taskRoot}/source/${evalId}.wav`;
+        const modelAudio = config.modelOrder
+          .map(([model]) => `<td>${audioTag(`${taskRoot}/${model}/${evalId}.wav`)}</td>`)
+          .join("");
+        return `
+          <tr>
+            <td class="prompt-cell">${escapeHtml(row[config.titleField] || "")}</td>
+            <td>${audioTag(sourceAudio)}</td>
+            ${modelAudio}
+          </tr>
+        `;
+      }).join("");
+      return `
+        <table class="demo-table">
+          <thead>
+            <tr>
+              <th>${escapeHtml(config.titleLabel)}</th>
+              <th>${escapeHtml(config.sourceLabel)}</th>
+              ${modelHeaders}
+            </tr>
+          </thead>
+          <tbody>${body}</tbody>
+        </table>
+      `;
+    }
+
+    async function loadJsonl(path) {
+      const response = await fetch(path);
+      if (!response.ok) {
+        throw new Error(`Failed to load ${path}: ${response.status}`);
+      }
+      const text = await response.text();
+      return text
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line) => JSON.parse(line));
+    }
+
+    async function renderTask(task) {
+      const config = TASKS[task];
+      const grid = document.getElementById(config.gridId);
+      const count = document.getElementById(config.countId);
+      try {
+        const rows = await loadJsonl(`${SAMPLE_ROOT}/${task}/manifest.jsonl`);
+        count.textContent = `${rows.length} examples.`;
+        grid.innerHTML = renderTable(task, rows);
+      } catch (error) {
+        count.textContent = "Error";
+        grid.innerHTML = `<div class="notification is-danger">${escapeHtml(error.message)}</div>`;
+      }
+    }
+
+    async function renderVsc() {
+      const grid = document.getElementById("vsc-grid");
+      const count = document.getElementById("vsc-count");
+      try {
+        const rows = await loadJsonl(`${SAMPLE_ROOT}/vsc/manifest.jsonl`);
+        count.textContent = `${rows.length} examples.`;
+        grid.innerHTML = renderVscTable(rows);
+      } catch (error) {
+        count.textContent = "Error";
+        grid.innerHTML = `<div class="notification is-danger">${escapeHtml(error.message)}</div>`;
+      }
+    }
+
+    renderVsc();
+    renderTask("design");
+    renderTask("edit");
+  </script>
+</body>
+</html>
