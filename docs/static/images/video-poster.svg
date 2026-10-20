@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="background" x2="1" y2="1"><stop stop-color="#122e26"/><stop offset="1" stop-color="#155340"/></linearGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0H0v80" fill="none" stroke="#b8e0c5" stroke-opacity=".055"/></pattern>
+  </defs>
+  <path fill="url(#background)" d="M0 0h1920v1080H0z"/>
+  <path fill="url(#grid)" d="M0 0h1920v1080H0z"/>
+  <rect x="126" y="126" width="220" height="48" rx="24" fill="#d4ecd9" fill-opacity=".1" stroke="#b7dfc3" stroke-opacity=".25"/>
+  <circle cx="153" cy="150" r="5" fill="#a3d8ac"/>
+  <text x="174" y="158" font-family="Arial, sans-serif" font-size="22" fill="#c2e2ca">NeurIPS 2026</text>
+  <text x="120" y="450" font-family="Arial, sans-serif" font-size="114" font-weight="700" letter-spacing="-5" fill="#f3f9f4">StyleStream <tspan fill="#8fd1ab">2.0</tspan></text>
+  <text x="126" y="525" font-family="Arial, sans-serif" font-size="36" fill="#c1d8ca">Fast and controllable.</text>
+  <text x="126" y="580" font-family="Arial, sans-serif" font-size="36" fill="#c1d8ca">Streaming voice style conversion.</text>
+  <g stroke="#8bd0a8" stroke-width="16" stroke-linecap="round">
+    <path d="M1250 470v140m46-220v300m46-390v480m46-310v140m46-250v360m46-290v220m46-170v120m46-240v360m46-260v160m46-110v60" opacity=".9"/>
+  </g>
+  <g transform="translate(126 780)">
+    <circle cx="34" cy="34" r="34" fill="#edf6ef"/>
+    <path d="m28 20 20 14-20 14z" fill="#1c5a43"/>
+    <text x="92" y="43" font-family="Arial, sans-serif" font-size="26" fill="#e1efe5">Watch the real-time demonstration</text>
+  </g>
+  <text x="126" y="968" font-family="Arial, sans-serif" font-size="20" fill="#8fb5a1">University of California, Berkeley</text>
+</svg>

@@ -4,324 +4,105 @@
   <meta charset="utf-8">
   <meta name="description" content="StyleStream 2.0: Fast and Controllable Streaming Voice Style Conversion. Accepted at NeurIPS 2026. Explore voice style conversion, text-based voice design, and voice editing demos.">
   <meta name="author" content="Yisi Liu, Nicholas Lee, Gopala K. Anumanchipalli">
-  <meta name="keywords" content="StyleStream 2.0, voice style design, voice editing, text-based speech generation">
+  <meta name="keywords" content="StyleStream 2.0, voice style conversion, voice design, voice editing, streaming speech">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8faf9">
+  <meta property="og:title" content="StyleStream 2.0">
+  <meta property="og:description" content="Fast and Controllable Streaming Voice Style Conversion · NeurIPS 2026">
+  <meta property="og:type" content="website">
   <title>StyleStream 2.0: Fast and Controllable Streaming Voice Style Conversion</title>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="icon" type="image/svg+xml" href="./static/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&amp;family=Plus+Jakarta+Sans:wght@500..800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/index.css">
+  <script src="./static/js/index.js" defer></script>
 </head>
 <body>
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">StyleStream 2.0: Fast and Controllable Streaming Voice Style Conversion</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">Yisi Liu,</span>
-            <span class="author-block">Nicholas Lee,</span>
-            <span class="author-block">Gopala K. Anumanchipalli</span>
+  <a class="skip-link" href="#demos">Skip to audio demos</a>
+  <header class="site-header">
+    <nav class="site-nav page-width" aria-label="Main navigation">
+      <a class="wordmark" href="#top" aria-label="StyleStream 2.0 home">
+        <svg class="brand-mark" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M4 11v6m5-12v18m5-14v10m5-16v22m5-15v8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+        <span>StyleStream <span class="wordmark-version">2.0</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#demos">Demos</a>
+        <a href="#video-demo">Video</a>
+        <a href="#overview">Overview</a>
+        <a class="nav-github" href="https://github.com/Berkeley-Speech-Group/StyleStream2.0" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero page-width" aria-labelledby="publication-title">
+      <div class="venue-badge"><span class="status-dot" aria-hidden="true"></span> Accepted at <strong>NeurIPS 2026</strong></div>
+      <h1 id="publication-title">StyleStream <span>2.0</span><span class="publication-subtitle">Fast and Controllable Streaming<br class="desktop-break"> Voice Style Conversion</span></h1>
+      <div class="publication-authors">
+        <span class="author-block"><a href="https://louis-liu.notion.site/" target="_blank" rel="noopener noreferrer">Yisi Liu</a><sup>1</sup>,</span>
+        <span class="author-block"><a href="https://www.linkedin.com/in/nicholas-lee-74731916a/?isSelfProfile=false" target="_blank" rel="noopener noreferrer">Nicholas Lee</a><sup>1</sup>,</span>
+        <span class="author-block"><a href="https://people.eecs.berkeley.edu/~gopala/" target="_blank" rel="noopener noreferrer">Gopala K. Anumanchipalli</a><sup>1</sup></span>
+      </div>
+      <p class="publication-affiliation"><sup>1</sup>University of California, Berkeley</p>
+      <div class="publication-links" aria-label="Project resources">
+        <button class="publication-button publication-pending" type="button" aria-label="arXiv paper, coming soon" disabled>
+          <svg viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/></svg>
+          <span>arXiv</span><span class="soon-label">Coming soon</span>
+        </button>
+        <a class="publication-button" href="https://github.com/Berkeley-Speech-Group/StyleStream2.0" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 496 512" fill="currentColor" aria-hidden="true"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+          <span>Code</span>
+        </a>
+      </div>
+      <div class="highlights" aria-label="Research highlights">
+        <div><strong>520 <span>ms</span></strong><p>End-to-end latency on an RTX 4060</p></div>
+        <div><strong>2× <span>Faster</span></strong><p>Than StyleStream 1.0</p></div>
+        <div><strong>More <span>Control</span></strong><p>Clone, design, and edit</p></div>
+      </div>
+    </section>
+
+    <section id="demos" class="demo-section section-width" aria-labelledby="demos-title">
+      <span id="voice-style-conversion" class="section-anchor" aria-hidden="true"></span>
+      <span id="voice-design" class="section-anchor" aria-hidden="true"></span>
+      <span id="voice-editing" class="section-anchor" aria-hidden="true"></span>
+      <div class="section-heading">
+        <div><p class="eyebrow">THE AUDIO DEMOS</p><h2 id="demos-title">Hear the difference.</h2></div>
+      </div>
+      <noscript><p class="notice">Enable JavaScript to browse the audio comparisons. You can still watch the <a href="#video-demo">video demo</a>.</p></noscript>
+      <div class="demo-workspace">
+        <div class="demo-tabs" role="tablist" aria-label="Demo task">
+          <button id="vsc-tab" class="demo-tab" type="button" role="tab" aria-selected="true" aria-controls="demo-panel" data-task="vsc">Voice style conversion</button>
+          <button id="design-tab" class="demo-tab" type="button" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" data-task="design">Voice design</button>
+          <button id="edit-tab" class="demo-tab" type="button" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" data-task="edit">Voice editing</button>
+        </div>
+        <div id="demo-panel" role="tabpanel" aria-labelledby="vsc-tab" tabindex="0" aria-busy="true">
+          <div class="task-description"><p id="task-description">Transfer a target voice’s style while preserving the source words.</p></div>
+          <div class="sample-toolbar">
+            <div class="example-control"><label for="sample-select">Example</label><select id="sample-select" disabled><option>Loading examples…</option></select></div>
+            <div class="sample-navigation" aria-label="Browse examples">
+              <button id="previous-sample" class="sample-button" type="button" aria-label="Previous example" disabled><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m12 5-5 5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Previous</button>
+              <button id="next-sample" class="sample-button" type="button" aria-label="Next example" disabled>Next<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m8 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
           </div>
-          <div class="is-size-5 publication-affiliation">University of California, Berkeley</div>
-          <div class="is-size-5 publication-venue">Accepted at NeurIPS 2026</div>
-          <div class="publication-links">
-            <a class="button is-dark is-rounded" href="https://github.com/Berkeley-Speech-Group/StyleStream2.0" target="_blank" rel="noopener noreferrer">Code</a>
-            <button class="button is-rounded publication-link-placeholder" type="button" disabled>arXiv &mdash; Coming soon</button>
-          </div>
+          <div id="sample-content" class="sample-content"><p class="loading-message" role="status">Loading audio examples…</p></div>
+          <p id="playback-status" class="playback-status" role="status" aria-live="polite"></p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="section figure-section">
-  <div class="container is-max-widescreen">
-    <figure class="system-figure">
-      <img src="./static/images/stylizer-voice-controller.png" alt="StyleStream 2.0 system overview">
-    </figure>
-  </div>
-</section>
+    <section id="video-demo" class="video-section page-width" aria-labelledby="video-title">
+      <div class="section-heading"><div><p class="eyebrow">SEE IT IN ACTION</p><h2 id="video-title">Streaming, in real time.</h2></div></div>
+      <div class="video-frame"><video class="demo-video" controls playsinline preload="none" poster="./static/images/video-poster.svg" aria-label="StyleStream 2.0 video demonstration"><source src="./static/video/StyleStream2.0_Video_Demo.mp4" type="video/mp4">Your browser does not support embedded video. <a href="./static/video/StyleStream2.0_Video_Demo.mp4">Download the demo.</a></video></div>
+    </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Voice style conversion (VSC) aims to transform a source utterance to match
-            the timbre, accent, and emotion of a target voice while preserving linguistic
-            content. StyleStream 1.0 introduced the first streamable zero-shot VSC system
-            with state-of-the-art conversion quality, but remained limited in two ways:
-            approximately 1s end-to-end latency on consumer hardware, and the lack of a
-            text-based interface for designing or editing target voices. We present
-            StyleStream 2.0, a fast and controllable streaming VSC framework that addresses
-            these limitations. To reduce latency, we train a few-step pixel MeanFlow model
-            and further fine-tune it with autoregressive feedback inspired by Self Forcing,
-            improving robustness under streaming inference. This reduces end-to-end latency
-            to 520 ms on a consumer GPU, a 2x speedup over StyleStream 1.0, while maintaining
-            conversion quality. To enable controllable style manipulation, we remove the
-            mel-spectrogram context and instead route target style information through a
-            compact style embedding. In this embedding space, we train a unified
-            text-conditioned flow matching model that supports both text-based voice design,
-            which maps natural language prompts to voice styles, and instruction-based voice
-            editing, which modifies a specific attribute of a source utterance while preserving
-            the rest. Experiments show that StyleStream 2.0 achieves the strongest target
-            style fidelity on VSC, voice design, and voice editing, while remaining competitive
-            on intelligibility and non-edited attribute preservation. Samples can be found
-            below in the <a href="#voice-style-conversion">voice style conversion</a>,
-            <a href="#voice-design">voice design</a>, and <a href="#voice-editing">voice editing</a> demos.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <section id="overview" class="overview-section page-width" aria-labelledby="overview-title">
+      <div class="section-heading"><div><p class="eyebrow">BEHIND THE VOICE</p><h2 id="overview-title">Fast by design. Controllable by text.</h2></div></div>
+      <figure class="system-figure"><a href="./static/images/stylizer-voice-controller.png" target="_blank" rel="noopener noreferrer" aria-label="Open the system overview at full size"><img src="./static/images/stylizer-voice-controller.png" alt="StyleStream 2.0 architecture: a destylizer extracts source content, a stylizer transfers target style, and a text-conditioned voice controller designs or edits the style embedding." loading="lazy" width="2048" height="778"></a><figcaption>The streaming stylizer and unified text-conditioned voice controller. <a href="./static/images/stylizer-voice-controller.pdf" target="_blank" rel="noopener noreferrer">View full figure <span aria-hidden="true">↗</span></a></figcaption></figure>
+      <div class="abstract-layout"><h3>Abstract</h3><div class="abstract-content"><p>Voice style conversion (VSC) aims to transform a source utterance to match the timbre, accent, and emotion of a target voice while preserving linguistic content. StyleStream 1.0 introduced the first streamable zero-shot VSC system with state-of-the-art conversion quality, but remained limited in two ways: approximately 1s end-to-end latency on consumer hardware, and the lack of a text-based interface for designing or editing target voices. We present StyleStream 2.0, a fast and controllable streaming VSC framework that addresses these limitations.</p><p>To reduce latency, we train a few-step pixel MeanFlow model and further fine-tune it with autoregressive feedback inspired by Self Forcing, improving robustness under streaming inference. This reduces end-to-end latency to <strong>520 ms on a consumer GPU, a 2x speedup over StyleStream 1.0</strong>, while maintaining conversion quality. To enable controllable style manipulation, we remove the mel-spectrogram context and instead route target style information through a compact style embedding.</p><p>In this embedding space, we train a unified text-conditioned flow matching model that supports both text-based voice design, which maps natural language prompts to voice styles, and instruction-based voice editing, which modifies a specific attribute of a source utterance while preserving the rest. Experiments show that StyleStream 2.0 achieves the strongest target style fidelity on VSC, voice design, and voice editing, while remaining competitive on intelligibility and non-edited attribute preservation.</p></div></div>
+    </section>
+  </main>
 
-<section id="video-demo" class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video Demo</h2>
-        <div class="content">
-          <video class="demo-video" controls preload="metadata">
-            <source src="./static/video/StyleStream2.0_Video_Demo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="voice-style-conversion" class="section">
-  <div style="width: 100%; max-width: none; padding: 0 20px;">
-    <h2 class="title is-3 has-text-centered">Voice Style Conversion</h2>
-    <p class="has-text-centered demo-section-note">
-      Source utterance plus a target style utterance. <span id="vsc-count">Loading</span>
-    </p>
-    <div id="vsc-grid" class="table-container" aria-live="polite"></div>
-  </div>
-</section>
-
-<section id="voice-design" class="section">
-  <div style="width: 100%; max-width: none; padding: 0 20px;">
-    <h2 class="title is-3 has-text-centered">Text-Based Voice Design</h2>
-    <p class="has-text-centered demo-section-note">
-      Source text plus a natural-language prompt. <span id="design-count">Loading</span>
-    </p>
-    <div id="design-grid" class="table-container" aria-live="polite"></div>
-  </div>
-</section>
-
-<section id="voice-editing" class="section">
-  <div style="width: 100%; max-width: none; padding: 0 20px;">
-    <h2 class="title is-3 has-text-centered">Text-Based Voice Editing</h2>
-    <p class="has-text-centered demo-section-note">
-      Source utterance plus a single-axis text edit instruction. <span id="edit-count">Loading</span>
-    </p>
-    <div id="edit-grid" class="table-container" aria-live="polite"></div>
-  </div>
-</section>
-
-<footer class="footer demo-footer">
-  <div class="content has-text-centered">
-    <p>StyleStream 2.0 demo samples.</p>
-  </div>
-</footer>
-
-  <script>
-    const SAMPLE_ROOT = "./static/samples";
-
-    const VSC_MODELS = [
-      ["cosyvoice2", "CosyVoice 2"],
-      ["cosyvoice3", "CosyVoice 3"],
-      ["final-vevo", "Vevo"],
-      ["final-vevo2", "Vevo 2"],
-      ["final-stylestream", "StyleStream 1.0 (Offline)"],
-      ["final-stylestream-streaming-s12", "StyleStream 1.0 (Streaming)"],
-      ["final-meanflow", "StyleStream 2.0 (Offline)"],
-      ["final-meanflow-streaming-cs4800-la1280", "StyleStream 2.0 (Streaming)"]
-    ];
-
-    const TASKS = {
-      design: {
-        titleField: "prompt",
-        titleLabel: "Prompt",
-        countId: "design-count",
-        gridId: "design-grid",
-        sourceLabel: "Source",
-        modelOrder: [
-          ["captts", "CapTTS"],
-          ["qwen3_voice_design", "Qwen3-TTS"],
-          ["stylestream2.0-st64-w4.0", "StyleStream 2.0 (Offline)"],
-          ["streaming-st64-w4.0", "StyleStream 2.0 (Streaming)"]
-        ]
-      },
-      edit: {
-        titleField: "instruction",
-        titleLabel: "Instruction",
-        countId: "edit-count",
-        gridId: "edit-grid",
-        sourceLabel: "Source",
-        modelOrder: [
-          ["vevo", "Vevo"],
-          ["vevo2", "Vevo 2"],
-          ["stylestream2.0-st64-w4.0", "StyleStream 2.0 (Offline)"],
-          ["streaming-st64-w4.0", "StyleStream 2.0 (Streaming)"]
-        ]
-      }
-    };
-
-    function escapeHtml(value) {
-      return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
-    }
-
-    function axesText(row) {
-      if (row.task === "design") {
-        return (row.target_axes || []).join(", ");
-      }
-      return row.edit_axis || "";
-    }
-
-    function audioTag(src) {
-      return `
-        <audio controls preload="none">
-          <source src="${escapeHtml(src)}" type="audio/wav">
-        </audio>
-      `;
-    }
-
-    function formatTarget(value) {
-      const text = String(value || "").replace(/_/g, " ");
-      if (text.toLowerCase() === "us") return "US";
-      return text.replace(/\b\w/g, (letter) => letter.toUpperCase());
-    }
-
-    function renderVscTable(rows) {
-      const modelHeaders = VSC_MODELS
-        .map(([, label]) => `<th>${escapeHtml(label)}</th>`)
-        .join("");
-      const body = rows.map((row) => {
-        const taskRoot = `${SAMPLE_ROOT}/vsc/${row.task}`;
-        const target = formatTarget(row.target);
-        const sourceAudio = `${taskRoot}/source/${row.source_id}.wav`;
-        const targetAudio = `${taskRoot}/target/${row.target}.wav`;
-        const modelAudio = VSC_MODELS
-          .map(([model]) => {
-            const src = `${taskRoot}/${model}/${model}_${row.source_id}_to_${row.target}.wav`;
-            return `<td>${audioTag(src)}</td>`;
-          })
-          .join("");
-        return `
-          <tr>
-            <td>${audioTag(sourceAudio)}</td>
-            <td>${escapeHtml(target)}</td>
-            <td>${audioTag(targetAudio)}</td>
-            ${modelAudio}
-          </tr>
-        `;
-      }).join("");
-      return `
-        <table class="demo-table">
-          <thead>
-            <tr>
-              <th>Source Audio</th>
-              <th>Target Style</th>
-              <th>Target Audio</th>
-              ${modelHeaders}
-            </tr>
-          </thead>
-          <tbody>${body}</tbody>
-        </table>
-      `;
-    }
-
-    function renderTable(task, rows) {
-      const config = TASKS[task];
-      const taskRoot = `${SAMPLE_ROOT}/${task}`;
-      const modelHeaders = config.modelOrder
-        .map(([, label]) => `<th>${escapeHtml(label)}</th>`)
-        .join("");
-      const body = rows.map((row) => {
-        const evalId = row.eval_id;
-        const sourceAudio = `${taskRoot}/source/${evalId}.wav`;
-        const modelAudio = config.modelOrder
-          .map(([model]) => `<td>${audioTag(`${taskRoot}/${model}/${evalId}.wav`)}</td>`)
-          .join("");
-        return `
-          <tr>
-            <td class="prompt-cell">${escapeHtml(row[config.titleField] || "")}</td>
-            <td>${audioTag(sourceAudio)}</td>
-            ${modelAudio}
-          </tr>
-        `;
-      }).join("");
-      return `
-        <table class="demo-table">
-          <thead>
-            <tr>
-              <th>${escapeHtml(config.titleLabel)}</th>
-              <th>${escapeHtml(config.sourceLabel)}</th>
-              ${modelHeaders}
-            </tr>
-          </thead>
-          <tbody>${body}</tbody>
-        </table>
-      `;
-    }
-
-    async function loadJsonl(path) {
-      const response = await fetch(path);
-      if (!response.ok) {
-        throw new Error(`Failed to load ${path}: ${response.status}`);
-      }
-      const text = await response.text();
-      return text
-        .split(/\r?\n/)
-        .map((line) => line.trim())
-        .filter(Boolean)
-        .map((line) => JSON.parse(line));
-    }
-
-    async function renderTask(task) {
-      const config = TASKS[task];
-      const grid = document.getElementById(config.gridId);
-      const count = document.getElementById(config.countId);
-      try {
-        const rows = await loadJsonl(`${SAMPLE_ROOT}/${task}/manifest.jsonl`);
-        count.textContent = `${rows.length} examples.`;
-        grid.innerHTML = renderTable(task, rows);
-      } catch (error) {
-        count.textContent = "Error";
-        grid.innerHTML = `<div class="notification is-danger">${escapeHtml(error.message)}</div>`;
-      }
-    }
-
-    async function renderVsc() {
-      const grid = document.getElementById("vsc-grid");
-      const count = document.getElementById("vsc-count");
-      try {
-        const rows = await loadJsonl(`${SAMPLE_ROOT}/vsc/manifest.jsonl`);
-        count.textContent = `${rows.length} examples.`;
-        grid.innerHTML = renderVscTable(rows);
-      } catch (error) {
-        count.textContent = "Error";
-        grid.innerHTML = `<div class="notification is-danger">${escapeHtml(error.message)}</div>`;
-      }
-    }
-
-    renderVsc();
-    renderTask("design");
-    renderTask("edit");
-  </script>
+  <footer class="site-footer"><div class="page-width footer-inner"><div><a class="wordmark" href="#top">StyleStream <span class="wordmark-version">2.0</span></a><p>University of California, Berkeley · NeurIPS 2026</p></div><div class="footer-links"><a href="https://github.com/Berkeley-Speech-Group/StyleStream" target="_blank" rel="noopener noreferrer">StyleStream 1.0 <span aria-hidden="true">↗</span></a><a href="https://github.com/Berkeley-Speech-Group/StyleStream2.0" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="#top">Back to top ↑</a></div></div></footer>
 </body>
 </html>
