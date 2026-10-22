@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/arXiv-Coming%20soon-b31b1b.svg?logo=arXiv" alt="arXiv: Coming soon" />
+  <a href="https://arxiv.org/abs/2610.28940"><img src="https://img.shields.io/badge/arXiv-2610.28940-b31b1b.svg?logo=arXiv" alt="arXiv: 2610.28940" /></a>
   <a href="https://berkeley-speech-group.github.io/StyleStream2.0/"><img src="https://img.shields.io/badge/GitHub-Demo-orange.svg" alt="Demo" /></a>
   <img src="https://img.shields.io/badge/🤗-HF%20Model%20%28coming%20soon%29-yellow" alt="Hugging Face model: Coming soon" />
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-Research%2FEducation-blue.svg" alt="License: Research/Education" /></a>
@@ -36,7 +36,7 @@
 
 This repository currently hosts the demo page and its audio/video samples.
 
-- **arXiv paper:** coming soon.
+- **arXiv paper:** [2610.28940](https://arxiv.org/abs/2610.28940).
 - **Inference code:** coming soon.
 - **Pretrained checkpoints / Hugging Face model:** being prepared.
 

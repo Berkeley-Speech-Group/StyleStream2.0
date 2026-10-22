@@ -60,8 +60,6 @@ h1 > span:first-child { color: var(--green); }
 .publication-button { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; gap: 9px; padding: 10px 22px; border: 1px solid #363636; border-radius: 999px; background: #363636; color: white; font-size: 17px; font-weight: 600; line-height: 1.4; }
 .publication-button svg { width: 20px; height: 20px; }
 .publication-button[href]:hover { border-color: #242424; background: #242424; color: white; }
-.publication-pending:disabled { opacity: 1; }
-.soon-label { padding-left: 5px; border-left: 1px solid #737373; color: #e2e2e2; font-size: 14px; font-weight: 500; }
 .highlights { display: grid; grid-template-columns: 1fr 1fr 1.35fr; margin: 45px auto 0; padding: 23px 0; border-block: 1px solid var(--line); }
 .highlights > div + div { border-left: 1px solid var(--line); }
 .highlights strong { color: var(--ink); font-family: var(--heading-font); font-size: 23px; font-weight: 750; letter-spacing: -.6px; word-spacing: .04em; }
@@ -178,7 +176,6 @@ audio { border-radius: 20px; }
   .button { gap: 6px; padding: 10px 12px; }
   .publication-links { gap: 10px; margin-top: 24px; }
   .publication-button { gap: 7px; padding: 10px 16px; font-size: 16px; }
-  .soon-label { font-size: 13px; }
   .highlights { grid-template-columns: 1fr 1fr; margin-top: 30px; padding-block: 18px; gap: 18px 0; }
   .highlights strong { font-size: 20px; }
   .highlights p { padding-inline: 8px; font-size: 13px; }
