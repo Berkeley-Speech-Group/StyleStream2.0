@@ -47,3 +47,16 @@ For the original StyleStream paper, demos, and inference code, see [StyleStream]
 This project uses the same **research, educational, and not-for-profit software license** as StyleStream. See [LICENSE](./LICENSE) for the full terms.
 
 Commercial use requires prior written permission from The Regents of the University of California.
+
+## Citation
+
+If you find StyleStream 2.0 useful, please consider citing our paper:
+
+```bibtex
+@article{liu2026stylestream2,
+  title={StyleStream 2.0: Fast and Controllable Streaming Voice Style Conversion},
+  author={Yisi Liu and Nicholas Lee and Gopala K. Anumanchipalli},
+  journal={arXiv preprint arXiv:2610.28940},
+  year={2026}
+}
+```
